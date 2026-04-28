@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calendar, MapPin, Clock, DollarSign, ChevronRight, User, Flag, Target, Info } from 'lucide-react';
+import { Calendar, MapPin, Clock, DollarSign, ChevronRight, User, Target, Info } from 'lucide-react';
 
 const lessons = [
   {
@@ -14,36 +14,17 @@ const lessons = [
     ],
     priceNote: '※ボール代別途',
     description: 'Takuプロが1時間付きっきりで徹底的にレッスンを行います。スイングの改善点や、個人の課題に合わせた密度の濃い指導をマンツーマンで受けたい方に最適なプランです。',
-    url: 'https://square.link/u/ptZ5iTLy?src=sheet',
     icon: <User className="w-8 h-8 text-emerald-600" />,
     tag: 'マンツーマン',
-    // タイムスロット（空き状況データ）を追加
     timeSlots: [
-      { id: 'slot-10', time: '10:00〜11:00', isAvailable: true, url: 'https://square.link/u/Nuga6VBY' },
-      { id: 'slot-11', time: '11:00〜12:00', isAvailable: true, url: 'https://square.link/u/L91kKxED' },
+      { id: 'slot-10', time: '10:00〜11:00', isAvailable: false, url: 'https://square.link/u/Nuga6VBY' },
+      { id: 'slot-11', time: '11:00〜12:00', isAvailable: false, url: 'https://square.link/u/L91kKxED' },
       { id: 'slot-12', time: '12:00〜13:00', isAvailable: true, url: 'https://square.link/u/vNqBddUF' },
       { id: 'slot-13', time: '13:00〜14:00', isAvailable: true, url: 'https://square.link/u/rn3Lp9Vv' },
       { id: 'slot-14', time: '14:00〜15:00', isAvailable: true, url: 'https://square.link/u/cuIJHvNI' },
       { id: 'slot-15', time: '15:00〜16:00', isAvailable: true, url: 'https://square.link/u/aWOZgXnF' },
       { id: 'slot-16', time: '16:00〜17:00', isAvailable: true, url: 'https://square.link/u/aDvPqbeD' },
     ]
-  },
-  {
-    id: 2,
-    date: '5月22日',
-    day: '金',
-    title: 'ラウンドレッスン',
-    location: '滝野カントリークラブ迎賓館コース',
-    time: 'スタート時間は参加者へご連絡',
-    price: [
-      'レッスン費：25,000円',
-      'プレー費：9,800円 (昼食込み)'
-    ],
-    priceNote: '※現地にて各自精算',
-    description: 'Takuプロが18ホール一緒にプレーしながら、ラウンド中の実践的なレッスンを行います。コースマネジメント、傾斜からの打ち方、メンタルコントロールなど、スコアアップに直結する技術を現場で学べます。',
-    url: 'https://square.link/u/aUOeMiRN?src=sheet',
-    icon: <Flag className="w-8 h-8 text-emerald-600" />,
-    tag: '実践ラウンド'
   },
   {
     id: 3,
@@ -184,7 +165,7 @@ export default function App() {
                   <div className="mt-6 border-t border-slate-100 pt-6">
                     <h4 className="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">
                       <Calendar className="w-5 h-5 text-emerald-600" />
-                      空き状況・ご予約枠
+                      ご予約枠
                     </h4>
                     <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
                       <table className="w-full text-sm text-left">
@@ -254,8 +235,9 @@ export default function App() {
           </h3>
           <ul className="text-sm text-slate-600 space-y-2 list-disc list-inside">
             <li>各レッスンは定員に達し次第、締め切りとさせていただきます。</li>
-            <li>キャンセル・変更をご希望の場合は、お早めに直接ご連絡をお願いいたします。</li>
             <li>天候等の理由により、やむを得ずスケジュールや場所が変更・中止になる場合がございます。</li>
+            <li className="text-red-500 font-medium">キャンセルは3日前までにお願いいたします。それ以降のキャンセルは返金できませんのでご了承ください。</li>
+            <li>SNS等で利用する動画や写真を撮影させていただく場合がございますので、あらかじめご了承ください。</li>
           </ul>
         </div>
       </main>
