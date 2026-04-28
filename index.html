@@ -1,250 +1,341 @@
-import React from 'react';
-import { Calendar, MapPin, Clock, DollarSign, ChevronRight, User, Target, Info } from 'lucide-react';
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taku 5月レッスンスケジュール</title>
+  <!-- Tailwind CSS (デザインを整えるためのライブラリ) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons (アイコンを表示するためのライブラリ) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* アイコンの表示位置の微調整 */
+    .lucide {
+      display: inline-block;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-slate-50 font-sans text-slate-800 pb-20">
 
-const lessons = [
-  {
-    id: 1,
-    date: '5月15日',
-    day: '金',
-    title: 'マンツーマンレッスン会',
-    location: '阪神ゴルフセンター住之江店',
-    time: '10:00〜17:00 (各枠1時間)',
-    price: [
-      '1時間：12,000円'
-    ],
-    priceNote: '※ボール代別途',
-    description: 'Takuプロが1時間付きっきりで徹底的にレッスンを行います。スイングの改善点や、個人の課題に合わせた密度の濃い指導をマンツーマンで受けたい方に最適なプランです。',
-    icon: <User className="w-8 h-8 text-emerald-600" />,
-    tag: 'マンツーマン',
-    timeSlots: [
-      { id: 'slot-10', time: '10:00〜11:00', isAvailable: false, url: 'https://square.link/u/Nuga6VBY' },
-      { id: 'slot-11', time: '11:00〜12:00', isAvailable: false, url: 'https://square.link/u/L91kKxED' },
-      { id: 'slot-12', time: '12:00〜13:00', isAvailable: true, url: 'https://square.link/u/vNqBddUF' },
-      { id: 'slot-13', time: '13:00〜14:00', isAvailable: true, url: 'https://square.link/u/rn3Lp9Vv' },
-      { id: 'slot-14', time: '14:00〜15:00', isAvailable: true, url: 'https://square.link/u/cuIJHvNI' },
-      { id: 'slot-15', time: '15:00〜16:00', isAvailable: true, url: 'https://square.link/u/aWOZgXnF' },
-      { id: 'slot-16', time: '16:00〜17:00', isAvailable: true, url: 'https://square.link/u/aDvPqbeD' },
-    ]
-  },
-  {
-    id: 3,
-    date: '5月29日',
-    day: '金',
-    title: '総合打球＆ショートゲームレッスン',
-    location: '新宝塚カントリークラブ',
-    time: '10:30〜16:00',
-    price: [
-      '参加費：23,000円'
-    ],
-    priceNote: '※別途施設使用料2,500円かかります。昼食代も別途。',
-    description: '午前はスイング構築の打球レッスン、午後はスコアメイクの鍵となるショートゲームをみっちり練習する、充実の1日プランです。',
-    schedule: [
-      '10:30〜12:00 打球レッスン',
-      '12:00〜13:00 昼食休憩',
-      '13:00〜16:00 ショートゲームレッスン'
-    ],
-    url: 'https://square.link/u/IzyRdyfs?src=sheet',
-    icon: <Target className="w-8 h-8 text-emerald-600" />,
-    tag: '1日集中'
-  }
-];
-
-export default function App() {
-  return (
-    <div className="min-h-screen bg-slate-50 font-sans text-slate-800 pb-20">
-      {/* ヒーローセクション */}
-      <header className="bg-emerald-900 text-white relative overflow-hidden shadow-lg">
-        <div className="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1587223075055-82e9a937ddff?auto=format&fit=crop&q=80&w=1000')] bg-cover bg-center mix-blend-overlay"></div>
-        <div className="relative max-w-4xl mx-auto px-6 py-16 md:py-24 text-center">
-          <p className="text-emerald-300 font-bold tracking-widest text-sm md:text-base mb-2 uppercase">Golf Lesson Schedule</p>
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-6 tracking-tight">
-            Taku <br className="md:hidden" />
-            <span className="text-3xl md:text-4xl font-bold">5月レッスンスケジュール</span>
-          </h1>
-          <p className="text-lg md:text-xl text-slate-200 max-w-2xl mx-auto leading-relaxed">
-            あなたのゴルフを次のレベルへ。<br />
-            初心者から上級者まで、目標に合わせた丁寧なレッスンをご提供します。各枠定員がございますので、お早めにお申し込みください。
-          </p>
-        </div>
-      </header>
-
-      {/* メインコンテンツ */}
-      <main className="max-w-3xl mx-auto px-4 sm:px-6 -mt-8 relative z-10">
-        
-        {/* レッスンリスト */}
-        <div className="space-y-8">
-          {lessons.map((lesson) => (
-            <section key={lesson.id} className="bg-white rounded-2xl shadow-md overflow-hidden border border-slate-100 transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl">
-              {/* カードヘッダー */}
-              <div className="bg-emerald-50/50 p-6 sm:p-8 border-b border-emerald-100 flex flex-col sm:flex-row sm:items-center gap-4">
-                <div className="flex-shrink-0 flex items-center justify-center bg-white rounded-xl shadow-sm w-20 h-20 flex-col border border-emerald-100">
-                  <span className="text-emerald-800 text-xs font-bold mb-0.5">{lesson.date.split('月')[0]}月</span>
-                  <span className="text-emerald-600 text-2xl font-black leading-none">{lesson.date.split('月')[1].replace('日','')}</span>
-                  <span className="text-emerald-800/60 text-xs font-medium mt-0.5">({lesson.day})</span>
-                </div>
-                <div>
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-1 rounded-full">
-                      {lesson.tag}
-                    </span>
-                  </div>
-                  <h2 className="text-2xl font-bold text-slate-800">{lesson.title}</h2>
-                </div>
-              </div>
-
-              {/* カードボディ */}
-              <div className="p-6 sm:p-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                  {/* 左カラム */}
-                  <div className="space-y-4">
-                    <div className="flex items-start gap-3">
-                      <MapPin className="w-5 h-5 text-slate-400 mt-0.5 flex-shrink-0" />
-                      <div>
-                        <p className="text-sm text-slate-500 font-medium">場所</p>
-                        <p className="font-semibold">{lesson.location}</p>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-start gap-3">
-                      <Clock className="w-5 h-5 text-slate-400 mt-0.5 flex-shrink-0" />
-                      <div>
-                        <p className="text-sm text-slate-500 font-medium">時間</p>
-                        <p className="font-semibold">{lesson.time}</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-3 bg-slate-50 p-3 rounded-lg border border-slate-100">
-                      <DollarSign className="w-5 h-5 text-amber-500 mt-0.5 flex-shrink-0" />
-                      <div>
-                        <p className="text-sm text-slate-500 font-medium mb-1">費用</p>
-                        <div className="font-semibold space-y-1">
-                          {lesson.price.map((p, idx) => (
-                            <p key={idx} className={p.includes('お得') ? 'text-amber-600' : ''}>{p}</p>
-                          ))}
-                        </div>
-                        {lesson.priceNote && (
-                          <p className="text-xs text-slate-500 mt-1.5 flex items-center gap-1">
-                            <Info className="w-3 h-3" />
-                            {lesson.priceNote}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* 右カラム */}
-                  <div>
-                    <h3 className="text-sm text-slate-500 font-medium mb-2 flex items-center gap-2">
-                      <div className="w-6 h-6 rounded-full bg-emerald-50 flex items-center justify-center flex-shrink-0">
-                        {lesson.icon}
-                      </div>
-                      レッスン内容
-                    </h3>
-                    <p className="text-slate-700 leading-relaxed text-sm sm:text-base">
-                      {lesson.description}
-                    </p>
-                    
-                    {lesson.schedule && (
-                      <div className="mt-4 bg-emerald-50/50 rounded-lg p-4 border border-emerald-100">
-                        <p className="text-xs font-bold text-emerald-800 mb-2">当日のタイムスケジュール</p>
-                        <ul className="text-sm space-y-1.5 text-slate-700 font-medium">
-                          {lesson.schedule.map((item, idx) => (
-                            <li key={idx} className="flex items-center gap-2">
-                              <div className="w-1.5 h-1.5 rounded-full bg-emerald-500"></div>
-                              {item}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                {/* 申し込みボタン・空き状況表 */}
-                {lesson.timeSlots ? (
-                  <div className="mt-6 border-t border-slate-100 pt-6">
-                    <h4 className="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">
-                      <Calendar className="w-5 h-5 text-emerald-600" />
-                      ご予約枠
-                    </h4>
-                    <div className="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
-                      <table className="w-full text-sm text-left">
-                        <thead className="bg-slate-50 border-b border-slate-200 text-slate-600">
-                          <tr>
-                            <th className="py-3 px-4 font-semibold w-1/2">時間</th>
-                            <th className="py-3 px-4 font-semibold text-center w-32"></th>
-                          </tr>
-                        </thead>
-                        <tbody className="divide-y divide-slate-100">
-                          {lesson.timeSlots.map((slot) => (
-                            <tr key={slot.id} className={`transition-colors ${slot.isAvailable ? 'bg-white hover:bg-slate-50' : 'bg-slate-50/70'}`}>
-                              <td className={`py-3 px-4 ${slot.isAvailable ? 'text-slate-700 font-bold' : 'text-slate-400 font-medium'}`}>
-                                {slot.time}
-                              </td>
-                              <td className="py-3 px-4 text-right sm:text-center">
-                                {slot.isAvailable ? (
-                                  <a 
-                                    href={slot.url} 
-                                    target="_blank" 
-                                    rel="noopener noreferrer" 
-                                    className="inline-block bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-3 sm:px-6 rounded-lg text-xs sm:text-sm transition-colors shadow-sm w-full sm:w-auto text-center"
-                                  >
-                                    予約する
-                                  </a>
-                                ) : (
-                                  <button disabled className="bg-slate-200 text-slate-400 font-bold py-2 px-3 sm:px-6 rounded-lg text-xs sm:text-sm cursor-not-allowed w-full sm:w-auto text-center border border-slate-300">
-                                    満枠
-                                  </button>
-                                )}
-                              </td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="pt-2">
-                    <a 
-                      href={lesson.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group relative flex items-center justify-center w-full bg-amber-500 hover:bg-amber-600 text-white font-bold text-lg py-4 px-8 rounded-xl shadow-md transition-all duration-200 overflow-hidden"
-                    >
-                      <span className="relative z-10 flex items-center gap-2">
-                        このレッスンに申し込む
-                        <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                      </span>
-                      <div className="absolute inset-0 bg-gradient-to-r from-amber-600 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                    </a>
-                    <p className="text-center text-xs text-slate-400 mt-3">
-                      ※安全なSquareの決済・予約ページへ移動します。
-                    </p>
-                  </div>
-                )}
-              </div>
-            </section>
-          ))}
-        </div>
-
-        {/* 注意事項 */}
-        <div className="mt-12 bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-slate-200">
-          <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
-            <Info className="w-5 h-5 text-emerald-600" />
-            お申し込みに関する注意事項
-          </h3>
-          <ul className="text-sm text-slate-600 space-y-2 list-disc list-inside">
-            <li>各レッスンは定員に達し次第、締め切りとさせていただきます。</li>
-            <li>天候等の理由により、やむを得ずスケジュールや場所が変更・中止になる場合がございます。</li>
-            <li className="text-red-500 font-medium">キャンセルは3日前までにお願いいたします。それ以降のキャンセルは返金できませんのでご了承ください。</li>
-            <li>SNS等で利用する動画や写真を撮影させていただく場合がございますので、あらかじめご了承ください。</li>
-          </ul>
-        </div>
-      </main>
-
-      <footer className="mt-20 py-8 text-center text-slate-500 text-sm">
-        <p>© 2026 Taku Golf Lesson. All rights reserved.</p>
-      </footer>
+  <!-- ヒーローセクション -->
+  <header class="bg-emerald-900 text-white relative overflow-hidden shadow-lg">
+    <div class="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1587223075055-82e9a937ddff?auto=format&fit=crop&q=80&w=1000')] bg-cover bg-center mix-blend-overlay"></div>
+    <div class="relative max-w-4xl mx-auto px-6 py-16 md:py-24 text-center">
+      <p class="text-emerald-300 font-bold tracking-widest text-sm md:text-base mb-2 uppercase">Golf Lesson Schedule</p>
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-6 tracking-tight">
+        Taku <br class="md:hidden" />
+        <span class="text-3xl md:text-4xl font-bold">5月レッスンスケジュール</span>
+      </h1>
+      <p class="text-lg md:text-xl text-slate-200 max-w-2xl mx-auto leading-relaxed">
+        あなたのゴルフを次のレベルへ。<br />
+        初心者から上級者まで、目標に合わせた丁寧なレッスンをご提供します。各枠定員がございますので、お早めにお申し込みください。
+      </p>
     </div>
-  );
-}
+  </header>
+
+  <!-- メインコンテンツ -->
+  <main class="max-w-3xl mx-auto px-4 sm:px-6 -mt-8 relative z-10">
+    
+    <!-- レッスンリスト -->
+    <div class="space-y-8">
+      
+      <!-- ==============================================
+           5月15日: マンツーマンレッスン会 
+           ============================================== -->
+      <section class="bg-white rounded-2xl shadow-md overflow-hidden border border-slate-100 transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl">
+        <!-- カードヘッダー -->
+        <div class="bg-emerald-50/50 p-6 sm:p-8 border-b border-emerald-100 flex flex-col sm:flex-row sm:items-center gap-4">
+          <div class="flex-shrink-0 flex items-center justify-center bg-white rounded-xl shadow-sm w-20 h-20 flex-col border border-emerald-100">
+            <span class="text-emerald-800 text-xs font-bold mb-0.5">5月</span>
+            <span class="text-emerald-600 text-2xl font-black leading-none">15</span>
+            <span class="text-emerald-800/60 text-xs font-medium mt-0.5">(金)</span>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-1 rounded-full">
+                マンツーマン
+              </span>
+            </div>
+            <h2 class="text-2xl font-bold text-slate-800">マンツーマンレッスン会</h2>
+          </div>
+        </div>
+
+        <!-- カードボディ -->
+        <div class="p-6 sm:p-8">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <!-- 左カラム -->
+            <div class="space-y-4">
+              <div class="flex items-start gap-3">
+                <i data-lucide="map-pin" class="w-5 h-5 text-slate-400 mt-0.5 flex-shrink-0"></i>
+                <div>
+                  <p class="text-sm text-slate-500 font-medium">場所</p>
+                  <p class="font-semibold">阪神ゴルフセンター住之江店</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start gap-3">
+                <i data-lucide="clock" class="w-5 h-5 text-slate-400 mt-0.5 flex-shrink-0"></i>
+                <div>
+                  <p class="text-sm text-slate-500 font-medium">時間</p>
+                  <p class="font-semibold">10:00〜17:00 (各枠1時間)</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3 bg-slate-50 p-3 rounded-lg border border-slate-100">
+                <i data-lucide="dollar-sign" class="w-5 h-5 text-amber-500 mt-0.5 flex-shrink-0"></i>
+                <div>
+                  <p class="text-sm text-slate-500 font-medium mb-1">費用</p>
+                  <div class="font-semibold space-y-1">
+                    <p>1時間：15,000円</p>
+                  </div>
+                  <p class="text-xs text-slate-500 mt-1.5 flex items-center gap-1">
+                    <i data-lucide="info" class="w-3 h-3"></i>
+                    ※ボール代別途
+                  </p>
+                </div>
+              </div>
+
+            <!-- 右カラム -->
+            <div>
+              <h3 class="text-sm text-slate-500 font-medium mb-2 flex items-center gap-2">
+                <div class="w-6 h-6 rounded-full bg-emerald-50 flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="user" class="w-4 h-4 text-emerald-600"></i>
+                </div>
+                レッスン内容
+              </h3>
+              <p class="text-slate-700 leading-relaxed text-sm sm:text-base">
+                Takuプロが1時間付きっきりで徹底的にレッスンを行います。スイングの改善点や、個人の課題に合わせた密度の濃い指導をマンツーマンで受けたい方に最適なプランです。
+              </p>
+            </div>
+          </div>
+
+          <!-- ご予約枠テーブル -->
+          <div class="mt-6 border-t border-slate-100 pt-6">
+            <h4 class="text-base font-bold text-slate-800 mb-4 flex items-center gap-2">
+              <i data-lucide="calendar" class="w-5 h-5 text-emerald-600"></i>
+              ご予約枠
+            </h4>
+            <div class="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+              <table class="w-full text-sm text-left">
+                <thead class="bg-slate-50 border-b border-slate-200 text-slate-600">
+                  <tr>
+                    <th class="py-3 px-4 font-semibold w-1/2">時間</th>
+                    <th class="py-3 px-4 font-semibold text-center w-32"></th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  
+                  <!-- 10:00枠 (満枠) -->
+                  <tr class="transition-colors bg-slate-50/70">
+                    <td class="py-3 px-4 text-slate-400 font-medium">10:00〜11:00</td>
+                    <td class="py-3 px-4 text-right sm:text-center">
+                      <button disabled class="bg-slate-200 text-slate-400 font-bold py-2 px-3 sm:px-6 rounded-lg text-xs sm:text-sm cursor-not-allowed w-full sm:w-auto text-center border border-slate-300">
+                        満枠
+                      </button>
+                    </td>
+                  </tr>
+
+                  <!-- 11:00枠 (満枠) -->
+                  <tr class="transition-colors bg-slate-50/70">
+                    <td class="py-3 px-4 text-slate-400 font-medium">11:00〜12:00</td>
+                    <td class="py-3 px-4 text-right sm:text-center">
+                      <button disabled class="bg-slate-200 text-slate-400 font-bold py-2 px-3 sm:px-6 rounded-lg text-xs sm:text-sm cursor-not-allowed w-full sm:w-auto text-center border border-slate-300">
+                        満枠
+                      </button>
+                    </td>
+                  </tr>
+
+                  <!-- 12:00枠 (空き) -->
+                  <tr class="transition-colors bg-white hover:bg-slate-50">
+                    <td class="py-3 px-4 text-slate-700 font-bold">12:00〜13:00</td>
+                    <td class="py-3 px-4 text-right sm:text-center">
+                      <a href="https://square.link/u/vNqBddUF" target="_blank" rel="noopener noreferrer" class="inline-block bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-3 sm:px-6 rounded-lg text-xs sm:text-sm transition-colors shadow-sm w-full sm:w-auto text-center">
+                        予約する
+                      </a>
+                    </td>
+                  </tr>
+
+                  <!-- 13:00枠 (空き) -->
+                  <tr class="transition-colors bg-white hover:bg-slate-50">
+                    <td class="py-3 px-4 text-slate-700 font-bold">13:00〜14:00</td>
+                    <td class="py-3 px-4 text-right sm:text-center">
+                      <a href="https://square.link/u/rn3Lp9Vv" target="_blank" rel="noopener noreferrer" class="inline-block bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-3 sm:px-6 rounded-lg text-xs sm:text-sm transition-colors shadow-sm w-full sm:w-auto text-center">
+                        予約する
+                      </a>
+                    </td>
+                  </tr>
+
+                  <!-- 14:00枠 (空き) -->
+                  <tr class="transition-colors bg-white hover:bg-slate-50">
+                    <td class="py-3 px-4 text-slate-700 font-bold">14:00〜15:00</td>
+                    <td class="py-3 px-4 text-right sm:text-center">
+                      <a href="https://square.link/u/cuIJHvNI" target="_blank" rel="noopener noreferrer" class="inline-block bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-3 sm:px-6 rounded-lg text-xs sm:text-sm transition-colors shadow-sm w-full sm:w-auto text-center">
+                        予約する
+                      </a>
+                    </td>
+                  </tr>
+
+                  <!-- 15:00枠 (空き) -->
+                  <tr class="transition-colors bg-white hover:bg-slate-50">
+                    <td class="py-3 px-4 text-slate-700 font-bold">15:00〜16:00</td>
+                    <td class="py-3 px-4 text-right sm:text-center">
+                      <a href="https://square.link/u/aWOZgXnF" target="_blank" rel="noopener noreferrer" class="inline-block bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-3 sm:px-6 rounded-lg text-xs sm:text-sm transition-colors shadow-sm w-full sm:w-auto text-center">
+                        予約する
+                      </a>
+                    </td>
+                  </tr>
+
+                  <!-- 16:00枠 (空き) -->
+                  <tr class="transition-colors bg-white hover:bg-slate-50">
+                    <td class="py-3 px-4 text-slate-700 font-bold">16:00〜17:00</td>
+                    <td class="py-3 px-4 text-right sm:text-center">
+                      <a href="https://square.link/u/aDvPqbeD" target="_blank" rel="noopener noreferrer" class="inline-block bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-3 sm:px-6 rounded-lg text-xs sm:text-sm transition-colors shadow-sm w-full sm:w-auto text-center">
+                        予約する
+                      </a>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==============================================
+           5月29日: 総合打球＆ショートゲームレッスン 
+           ============================================== -->
+      <section class="bg-white rounded-2xl shadow-md overflow-hidden border border-slate-100 transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl">
+        <!-- カードヘッダー -->
+        <div class="bg-emerald-50/50 p-6 sm:p-8 border-b border-emerald-100 flex flex-col sm:flex-row sm:items-center gap-4">
+          <div class="flex-shrink-0 flex items-center justify-center bg-white rounded-xl shadow-sm w-20 h-20 flex-col border border-emerald-100">
+            <span class="text-emerald-800 text-xs font-bold mb-0.5">5月</span>
+            <span class="text-emerald-600 text-2xl font-black leading-none">29</span>
+            <span class="text-emerald-800/60 text-xs font-medium mt-0.5">(金)</span>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-1 rounded-full">
+                1日集中
+              </span>
+            </div>
+            <h2 class="text-2xl font-bold text-slate-800">総合打球＆ショートゲームレッスン</h2>
+          </div>
+        </div>
+
+        <!-- カードボディ -->
+        <div class="p-6 sm:p-8">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <!-- 左カラム -->
+            <div class="space-y-4">
+              <div class="flex items-start gap-3">
+                <i data-lucide="map-pin" class="w-5 h-5 text-slate-400 mt-0.5 flex-shrink-0"></i>
+                <div>
+                  <p class="text-sm text-slate-500 font-medium">場所</p>
+                  <p class="font-semibold">新宝塚カントリークラブ</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start gap-3">
+                <i data-lucide="clock" class="w-5 h-5 text-slate-400 mt-0.5 flex-shrink-0"></i>
+                <div>
+                  <p class="text-sm text-slate-500 font-medium">時間</p>
+                  <p class="font-semibold">10:30〜16:00</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3 bg-slate-50 p-3 rounded-lg border border-slate-100">
+                <i data-lucide="dollar-sign" class="w-5 h-5 text-amber-500 mt-0.5 flex-shrink-0"></i>
+                <div>
+                  <p class="text-sm text-slate-500 font-medium mb-1">費用</p>
+                  <div class="font-semibold space-y-1">
+                    <p>参加費：23,000円</p>
+                  </div>
+                  <p class="text-xs text-slate-500 mt-1.5 flex items-center gap-1">
+                    <i data-lucide="info" class="w-3 h-3"></i>
+                    ※別途施設使用料2,500円かかります。昼食代も別途。
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 右カラム -->
+            <div>
+              <h3 class="text-sm text-slate-500 font-medium mb-2 flex items-center gap-2">
+                <div class="w-6 h-6 rounded-full bg-emerald-50 flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="target" class="w-4 h-4 text-emerald-600"></i>
+                </div>
+                レッスン内容
+              </h3>
+              <p class="text-slate-700 leading-relaxed text-sm sm:text-base">
+                午前はスイング構築の打球レッスン、午後はスコアメイクの鍵となるショートゲームをみっちり練習する、充実の1日プランです。
+              </p>
+              
+              <div class="mt-4 bg-emerald-50/50 rounded-lg p-4 border border-emerald-100">
+                <p class="text-xs font-bold text-emerald-800 mb-2">当日のタイムスケジュール</p>
+                <ul class="text-sm space-y-1.5 text-slate-700 font-medium">
+                  <li class="flex items-center gap-2">
+                    <div class="w-1.5 h-1.5 rounded-full bg-emerald-500"></div>
+                    10:30〜12:00 打球レッスン
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <div class="w-1.5 h-1.5 rounded-full bg-emerald-500"></div>
+                    12:00〜13:00 昼食休憩
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <div class="w-1.5 h-1.5 rounded-full bg-emerald-500"></div>
+                    13:00〜16:00 ショートゲームレッスン
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- 申し込みボタン -->
+          <div class="pt-2">
+            <a 
+              href="https://square.link/u/IzyRdyfs?src=sheet"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group relative flex items-center justify-center w-full bg-amber-500 hover:bg-amber-600 text-white font-bold text-lg py-4 px-8 rounded-xl shadow-md transition-all duration-200 overflow-hidden"
+            >
+              <span class="relative z-10 flex items-center gap-2">
+                このレッスンに申し込む
+                <i data-lucide="chevron-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+              </span>
+              <div class="absolute inset-0 bg-gradient-to-r from-amber-600 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            </a>
+            <p class="text-center text-xs text-slate-400 mt-3">
+              ※安全なSquareの決済・予約ページへ移動します。
+            </p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- 注意事項 -->
+    <div class="mt-12 bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-slate-200">
+      <h3 class="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+        <i data-lucide="info" class="w-5 h-5 text-emerald-600"></i>
+        お申し込みに関する注意事項
+      </h3>
+      <ul class="text-sm text-slate-600 space-y-2 list-disc list-inside">
+        <li>各レッスンは定員に達し次第、締め切りとさせていただきます。</li>
+        <li>天候等の理由により、やむを得ずスケジュールや場所が変更・中止になる場合がございます。</li>
+        <li class="text-red-500 font-medium">キャンセルは3日前までにお願いいたします。それ以降のキャンセルは返金できませんのでご了承ください。</li>
+        <li>SNS等で利用する動画や写真を撮影させていただく場合がございますので、あらかじめご了承ください。</li>
+      </ul>
+    </div>
+  </main>
+
+  <footer class="mt-20 py-8 text-center text-slate-500 text-sm">
+    <p>© 2026 Taku Golf Lesson. All rights reserved.</p>
+  </footer>
+
+  <!-- Lucideアイコンを描画するスクリプト -->
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
